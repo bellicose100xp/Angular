@@ -3,33 +3,37 @@
 <head lang="en">
     <meta charset="utf-8">
     <title> Acme Product Management </title>
+    <!-- Style Sheets -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
     <!-- Library Scripts -->
     <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/angular-mocks.js"></script>
     <!-- Application Scripts -->
     <script src="app/app.js"></script>
+    <!-- Services -->
+    <script src="common/services/common.services.js"></script>
+    <script src="common/services/productResource.js"></script>
+    <script src="common/services/productResourceMock.js"></script>
+    <!-- Product Controllers -->
+    <script src="app/products/productListController.js"></script>
 </head>
 
 <body ng-app="productManagement">
-
-<table ng-init='products = [
-{
-"productName":"Leaf Rake",
-"productCode":"GDN-0011",
-"releaseDate":"May 21, 2013",
-"price":8.99,
-"imageUrl":"https://openclipart.org/image/300px/svg_to_png/26215/Leaf_Rake.png"
-},
-    {
-        "productName":"Hammer",
-        "productCode":"TBX-0048",
-        "releaseDate":"March 19, 2009",
-        "price":19.95,
-        "imageUrl":"https://openclipart.org/image/300px/svg_to_png/4793/david_benjamin_Hammer.png"
-    }
-]'>
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size: large">Product List</div>
+<div class="panel-body">
+<table class="table" ng-controller="productListController as vm">
     <thead>
     <tr>
-        <td>Image</td>
+        <td>
+            <button type="button"
+                    class="btn btn-primary"
+                    ng-click="vm.toggleImage()">
+                {{vm.showImage ? "Hide" : "Show"}} Image
+            </button>
+        </td>
         <td>Product</td>
         <td>Code</td>
         <td>Available</td>
@@ -37,9 +41,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="product in products">
+    <tr ng-repeat="product in vm.product">
         <td>
-            <img ng-src="{{product.imageUrl}}" title="{{product.productName}}" style="width: 50px;margin: 2px">
+            <img ng-if="vm.showImage" ng-src="{{product.imageUrl}}" title="{{product.productName}}" style="width: 50px;margin: 2px">
         </td>
         <td> {{product.productName}}</td>
         <td> {{product.productCode}}</td>
@@ -48,6 +52,8 @@
     </tr>
     </tbody>
 </table>
+</div>
+</div>
 
 </body>
 
