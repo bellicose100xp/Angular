@@ -3,8 +3,52 @@
 <head lang="en">
     <meta charset="utf-8">
     <title> Acme Product Management </title>
-
+    <!-- Library Scripts -->
     <script src="js/angular.js"></script>
+    <!-- Application Scripts -->
+    <script src="app/app.js"></script>
 </head>
+
+<body ng-app="productManagement">
+
+<table ng-init='products = [
+{
+"productName":"Leaf Rake",
+"productCode":"GDN-0011",
+"releaseDate":"May 21, 2013",
+"price":8.99,
+"imageUrl":"https://openclipart.org/image/300px/svg_to_png/26215/Leaf_Rake.png"
+},
+    {
+        "productName":"Hammer",
+        "productCode":"TBX-0048",
+        "releaseDate":"March 19, 2009",
+        "price":19.95,
+        "imageUrl":"https://openclipart.org/image/300px/svg_to_png/4793/david_benjamin_Hammer.png"
+    }
+]'>
+    <thead>
+    <tr>
+        <td>Image</td>
+        <td>Product</td>
+        <td>Code</td>
+        <td>Available</td>
+        <td>Price</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="product in products">
+        <td>
+            <img ng-src="{{product.imageUrl}}" title="{{product.productName}}" style="width: 50px;margin: 2px">
+        </td>
+        <td> {{product.productName}}</td>
+        <td> {{product.productCode}}</td>
+        <td> {{product.releaseDate}}</td>
+        <td> {{product.price | currency}}</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
 
 </html>
