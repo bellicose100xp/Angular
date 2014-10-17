@@ -9,7 +9,7 @@
         .module("productResourceMock", ["ngMockE2E"]);
 
     app.run(function ($httpBackend) {
-
+        //list of products
         var products = [
             {
                 "productId": 1,
@@ -73,11 +73,14 @@
             }
         ];
 
+        // if the url doesn't specify specific products then just get all products
         var productUrl = "/api/products"
+        $httpBackend.whenGET(productUrl).respond(products);
 
+        // if the url is for a specific product then only return that product
         var editingRegex = new RegExp(productUrl + "/[0-9][0-9]*,");
         $httpBackend.whenGET(editingRegex).respond(function (method, url, data) {
-            var product = {"productId": 0};
+            var product = {"productId": 0}; //?? why?
             var parameters = url.split('/');
             var length = parameters.length;
             var id = parameters[length - 1];
@@ -88,12 +91,39 @@
                         product = products[i];
                         break;
                     }
-                };
+                }
+
             }
 
             return [200, product, {}];
 
         });
+
+        // add a new product or update an existing product
+        $httpBackend.whenPOST(productUrl).respond(function (method, url, data) {
+            var product = angular.fromJson(data);
+
+            if (!product.productId) {
+                //new product Id
+                product.productId = products[products.length - 1].productId + 1; //?? why?
+                product.push(product);
+            }
+
+            else {
+                // Updated product
+                for (var i = 0; i < products.length; i++) {
+                    if (products[i].productId == product.productId) {
+                        products[i] = product;
+                        break;
+                    }
+                }
+            }
+            return [200, product, {}];
+
+        });
+
+        // Pass through any requests for application files through here
+        $httpBackend.whenGET(/app/).passThrough();
 
     })
 
