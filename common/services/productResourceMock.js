@@ -74,7 +74,7 @@
         ];
 
         // if the url doesn't specify specific products then just get all products
-        var productUrl = "/api/products"
+        var productUrl = "/api/products";
         $httpBackend.whenGET(productUrl).respond(products);
 
         // if the url is for a specific product then only return that product
