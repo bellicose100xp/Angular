@@ -6,6 +6,6 @@
     "use strict";
 
     angular
-        .module("common.services",["ngResource"])
+        .module("common.services",["ngResource"]);
 
 }());
