@@ -9,7 +9,7 @@
         .factory("productResource",["$resource", productResource]);
 
     function productResource($resource){
-        return $resource("/api/products/:productID")
+        return $resource("/api/products/:productId")
     }
 
 }());

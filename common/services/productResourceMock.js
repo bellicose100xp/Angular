@@ -78,7 +78,7 @@
         $httpBackend.whenGET(productUrl).respond(products);
 
         // if the url is for a specific product then only return that product
-        var editingRegex = new RegExp(productUrl + "/[0-9][0-9]*,");
+        var editingRegex = new RegExp(productUrl + "/[0-9][0-9]*",'');
         $httpBackend.whenGET(editingRegex).respond(function (method, url, data) {
             var product = {"productId": 0}; //?? why?
             var parameters = url.split('/');
@@ -87,7 +87,7 @@
 
             if (id > 0) {
                 for (var i = 0; i < products.length; i++) {
-                    if (products[i].productId = id) {
+                    if (products[i].productId == id) {
                         product = products[i];
                         break;
                     }
