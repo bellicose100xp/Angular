@@ -22,6 +22,7 @@
     <!-- Product Controllers -->
     <script src="app/products/productListController.js"></script>
     <script src="app/products/productDetailController.js"></script>
+    <script src="app/products/productEditController.js"></script>
 </head>
 
 <body ng-app="productManagement">
@@ -45,7 +46,7 @@
             <ul class="nav navbar-nav">
                 <li><a ui-sref="productList">Product List</a></li>
                 <!-- productId parameter is the variable that ProductEdit state needs in the route (with value 0 since it's a new product) -->
-                <li><a ui-sref="productEdit({productId:0})"><i class="glyphicon glyphicon-plus"></i> Add Product</a></li>
+                <li><a ui-sref="productEdit.info({productId:0})"><i class="glyphicon glyphicon-plus"></i> Add Product</a></li>
             </ul>
         </div>
     </div>
