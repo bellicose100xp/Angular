@@ -106,9 +106,10 @@
             var product = angular.fromJson(data);
 
             if (!product.productId) {
-                //new product Id
-                product.productId = products[products.length - 1].productId + 1; //?? why?
-                product.push(product);
+                //assign new product Id
+                product.productId = products[products.length - 1].productId + 1;
+                // push the new product to products array
+                products.push(product);
             }
 
             else {

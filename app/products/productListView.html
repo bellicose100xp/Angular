@@ -24,7 +24,7 @@
                 </td>
                 <td> <a ui-sref="productDetail({productId: product.productId})"> {{product.productName}}</a></td>
                 <td> {{product.productCode}}</td>
-                <td> {{product.releaseDate}}</td>
+                <td> {{product.releaseDate | date:'MMM dd, yyyy' }}</td>
                 <td> {{product.price | currency}}</td>
                 <td>
                     <a class="btn btn-primary"

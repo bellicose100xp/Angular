@@ -17,3 +17,21 @@ body {
     background: #007ACC;
     color: #fff;
 }
+
+form {
+    background-color: #A4C8E8;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px #ccc;
+    color: #404040;
+    font-size: 16px;
+    padding: 30px 20px;
+}
+
+form legend {
+    color: #404040;
+    font-size: 42px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    line-height: 1;
+    text-shadow: 0 3px 0 rgba(0,0,0,0.1);
+}
