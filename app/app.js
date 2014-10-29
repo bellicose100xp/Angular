@@ -36,7 +36,7 @@
                         templateUrl: "app/products/productEditView.html",
                         controller: "productEditController as vm",
                         resolve: {
-                            productResource: "productResource",
+                           // productResource: "productResource",
                             product: function (productResource, $stateParams) {
                                 var productId = $stateParams.productId;
                                 return productResource.get({productId:productId}).$promise;
@@ -63,7 +63,7 @@
                         templateUrl: "app/products/productDetailView.html",
                         controller: "productDetailController as vm",
                         resolve: {
-                            productResource: "productResource",
+                          //  productResource: "productResource",
                             product: function (productResource, $stateParams) {
                                 var productId = $stateParams.productId;
                                 return productResource.get({productId:productId}).$promise;

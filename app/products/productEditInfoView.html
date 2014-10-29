@@ -2,11 +2,11 @@
     <fieldset>
         <legend>Basic Product Information</legend>
 
-        <div class="form-group">
+        <div class="form-group"
+             ng-class="{'has-error':productForm.inputProductName.$invalid && productForm.inputProductName.$dirty}">
             <label for="inputProductName" class="col-md-2 control-label">Product Name</label>
 
-            <div class="col-md-4"
-                 ng-class="{'has-error':productForm.inputProductName.$invalid && productForm.inputProductName.$dirty}">
+            <div class="col-md-4">
                 <input id="inputProductName"
                        name="inputProductName"
                        class="form-control"
@@ -18,7 +18,7 @@
                        ng-maxlength="12">
             </div>
             <!-- using $dirty prevents the error from showing up before user had a chance to interact with the form -->
-         <span class="help-block has-error" ng-show="productForm.inputProductName.$dirty">
+         <span class="help-block" ng-show="productForm.inputProductName.$dirty">
              <span ng-show="productForm.inputProductName.$error.required">Product Name is required!</span>
              <span ng-show="productForm.inputProductName.$error.minlength">Must be at least 4 Characters </span>
              <span ng-show="productForm.inputProductName.$error.maxlength">Cannot Exceed 12 Characters in length</span>
@@ -74,18 +74,24 @@
                           ng-model="vm.product.description"></textarea>
             </div>
         </div>
-
+<!-- custom save & cancel buttons -->
         <div class="form-group">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-2">
                 <span>
-                    <button class="btn btn-primary" style="width: 80px;margin-right: 10px" ng-click="vm.submit(productForm.$valid)">Save
+                    <button class="btn btn-primary" style="width: 80px;margin-right: 10px"
+                            ng-click="vm.submit(productForm.$valid)">Save
                     </button>
                 </span>
                 <span>
-                    <button class="btn btn-primary" style="width: 70px" ng-click="vm.cancel()">Cancel</button>
+                    <button class="btn btn-primary" style="width: 70px; margin-right: 10px" ng-click="vm.cancel()">
+                        Cancel
+                    </button>
                 </span>
-                <span class="row">
-                    <span style="color: #ffffff;background-color: red; padding: 2px;" ng-hide="vm.saveButtonClicked">Product Saved</span>
+
+                <span>
+                    <span style="color: #ffffff;background-color: darkgreen; padding: 5px"
+                          ng-hide="vm.saveButtonClicked">Product Saved</span>
+                     <span style="color: #ffffff;background-color: red; padding: 5px;" ng-hide="vm.needsValidation">ERROR! Check all errors on the page</span>
                 </span>
             </div>
         </div>

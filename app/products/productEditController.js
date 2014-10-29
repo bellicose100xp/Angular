@@ -6,12 +6,33 @@
 
     angular
         .module("productManagement")
-        .controller("productEditController",['product','$state','$timeout',productEditController]);
+        .controller("productEditController",['product','$state','$timeout','productService',productEditController]);
 
-    function productEditController(product, $state, $timeout){
+    function productEditController(product, $state, $timeout, productService){
         var vm = this;
 
         vm.product = product;
+
+        vm.priceOption = "percent";
+
+        vm.marginPercent = function(){
+            return productService.calculateMarginPercent(vm.product.price, vm.product.cost);
+        };
+
+        vm.calculatePrice = function(){
+            var price = 0;
+
+            if(vm.priceOption=='amount'){
+                price = productService.calculatePriceFromMarkupAmount(vm.product.cost, vm.markupAmount);
+            }
+
+            if(vm.priceOption=='percent'){
+                price = productService.calculatePriceFromMarkupPercent(vm.product.cost, vm.markupPercent);
+            }
+
+            vm.product.price = price;
+
+        };
 
         if (vm.product && vm.product.productId) {
             vm.title = "Edit: " + vm.product.productName;
@@ -28,16 +49,18 @@
         };
 
         vm.saveButtonClicked = true;
+        vm.needsValidation = true;
 
         vm.submit = function(isValid) {
             if (isValid) {
                 vm.product.$save();
-                toastr.success("Save Successful");
+                //toastr.success("Save Successful");
                 vm.saveButtonClicked = false;
                 $timeout(function(){vm.saveButtonClicked = true;}, 3000);
             }
             else {
-                alert("Please correct the validation errors first.");
+                vm.needsValidation = false;
+                $timeout(function(){vm.needsValidation = true;}, 5000);
             }
         };
 

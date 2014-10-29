@@ -20,20 +20,31 @@
 
         <div class="row col-md-8 col-md-offset-2">
             <span ng-repeat="tag in vm.product.tags | orderBy: tags">
-                <button class="btn btn-default" style="font-size: smaller;margin-bottom: 12px" ng-click="vm.removeTag($index)">
+                <button class="btn btn-default" style="font-size: smaller;margin-bottom: 12px"
+                        ng-click="vm.removeTag($index)">
                     {{tag}}
-               <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </span>
         </div>
 
         <div class="form-group">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-2">
                 <span>
-                    <button class="btn btn-primary" style="width: 80px;margin-right: 10px" ng-click="vm.submit(productTagsForm.$valid)">Save</button>
+                    <button class="btn btn-primary" style="width: 80px;margin-right: 10px"
+                            ng-click="vm.submit(productTagsForm.$valid)">Save
+                    </button>
                 </span>
                 <span>
-                    <button class="btn btn-primary" style="width: 70px" ng-click="vm.cancel()">Cancel</button>
+                    <button class="btn btn-primary" style="width: 70px;margin-right: 10px" ng-click="vm.cancel()">
+                        Cancel
+                    </button>
+                </span>
+
+                <span>
+                    <span style="color: #ffffff;background-color: darkgreen; padding: 5px"
+                          ng-hide="vm.saveButtonClicked">Product Saved</span>
+                     <span style="color: #ffffff;background-color: red; padding: 5px;" ng-hide="vm.needsValidation">ERROR! Check all errors on the page</span>
                 </span>
             </div>
         </div>
